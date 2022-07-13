@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+
+
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+}
+
+.container {
+    box-shadow: 0 0 10px rgb(195, 195, 195);
+    border-radius: 5px;
+    width: 400px;
+}
+
+.form {
+    padding: 30px 40px;
+}
