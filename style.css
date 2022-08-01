@@ -13,6 +13,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    background-color: #fffae0;
 
 }
 
@@ -20,6 +21,7 @@ body {
     box-shadow: 0 0 10px rgb(195, 195, 195);
     border-radius: 5px;
     width: 400px;
+    background-color: #ffffff;
 }
 
 .form {
@@ -78,8 +80,8 @@ h2 {
 
 .form button {
     cursor: pointer;
-    background-color: #2ecc71;
-    border: 2px solid #2ecc71;
+    background-color: #22CB5C;
+    border: 2px solid #22CB5C;
     border-radius: 4px;
     color: #fff;
     display: block;
