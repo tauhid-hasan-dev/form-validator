@@ -18,7 +18,6 @@ function showSuccess(input) {
     formControl.className = "form-control success";
 }
 
-
 //check required
 function checkRequired(inputArr) {
     inputArr.forEach(input => {
@@ -36,11 +35,37 @@ function getFieldName(input) {
 
 /* username and password validation */
 function checkUsername(input, min, max) {
-    console.log(min);
     if (input.value.length < min) {
         showError(input, `${getFieldName(input)} must be at least ${min} characters`)
     } else if (input.value.length > max) {
         showError(input, `${getFieldName(input)} must be less than ${max} characters`)
+    }
+}
+function checkPassword(input, min, max) {
+    if (input.value.length < min) {
+        showError(input, `${getFieldName(input)} must be at least ${min} characters`)
+    } else if (input.value.length > max) {
+        showError(input, `${getFieldName(input)} must be less than ${max} characters`)
+    }
+}
+
+// email validation
+function checkEmail(input) {
+    const re =
+        /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (re.test(input.value)) {
+        showSuccess(input);
+    } else {
+        showError(input, "Email is not valid")
+    }
+}
+
+//match password one and passoword two
+function matchPassword(input1, input2) {
+    if (input1.value === input2.value && (input1.value !== '' && input2.value !== '')) {
+        showSuccess(input2);
+    } else {
+        showError(input2, "Password did not matched, try again please");
     }
 }
 
@@ -50,4 +75,6 @@ form.addEventListener('submit', function (e) {
     checkRequired([username, email, password, password2])
     checkUsername(username, 3, 15);
     checkPassword(password, 6, 25);
+    checkEmail(email);
+    matchPassword(password, password2);
 })
