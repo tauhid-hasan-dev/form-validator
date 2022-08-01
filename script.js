@@ -23,15 +23,31 @@ function showSuccess(input) {
 function checkRequired(inputArr) {
     inputArr.forEach(input => {
         if (input.value === '') {
-            showError(input, `${input.id} is required`)
+            showError(input, `${getFieldName(input)} is required`)
         } else {
             showSuccess(input)
         }
     });
 }
 
+function getFieldName(input) {
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+/* username and password validation */
+function checkUsername(input, min, max) {
+    console.log(min);
+    if (input.value.length < min) {
+        showError(input, `${getFieldName(input)} must be at least ${min} characters`)
+    } else if (input.value.length > max) {
+        showError(input, `${getFieldName(input)} must be less than ${max} characters`)
+    }
+}
+
 //addEventListener
 form.addEventListener('submit', function (e) {
     e.preventDefault();
     checkRequired([username, email, password, password2])
+    checkUsername(username, 3, 15);
+    checkPassword(password, 6, 25);
 })
