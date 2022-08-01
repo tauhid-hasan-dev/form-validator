@@ -35,14 +35,14 @@ function getFieldName(input) {
 
 /* username and password validation */
 function checkUsername(input, min, max) {
-    if (input.value.length < min) {
+    if (input.value.length < min && input.value.length > '') {
         showError(input, `${getFieldName(input)} must be at least ${min} characters`)
     } else if (input.value.length > max) {
         showError(input, `${getFieldName(input)} must be less than ${max} characters`)
     }
 }
 function checkPassword(input, min, max) {
-    if (input.value.length < min) {
+    if (input.value.length < min && input.value.length > '') {
         showError(input, `${getFieldName(input)} must be at least ${min} characters`)
     } else if (input.value.length > max) {
         showError(input, `${getFieldName(input)} must be less than ${max} characters`)
@@ -55,7 +55,7 @@ function checkEmail(input) {
         /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (re.test(input.value)) {
         showSuccess(input);
-    } else {
+    } else if (input.value !== '') {
         showError(input, "Email is not valid")
     }
 }
@@ -64,6 +64,8 @@ function checkEmail(input) {
 function matchPassword(input1, input2) {
     if (input1.value === input2.value && (input1.value !== '' && input2.value !== '')) {
         showSuccess(input2);
+    } else if ((input1.value == '' && input2.value == '')) {
+        showError(input2, "Please enter password again");
     } else {
         showError(input2, "Password did not matched, try again please");
     }
